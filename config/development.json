@@ -1,0 +1,30 @@
+{
+  "env": "development",
+  "appname": "dev panda application",
+  "apploglevel": "debug",
+  "port": 5005,
+  "typeorm": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "ashikchalise",
+    "password": "ashikchalise",
+    "database": "panda"
+  },
+  "rabbitmq": {
+    "connectionSettings": {
+      "username": "guest",
+      "password": "guest",
+      "vhost": "/",
+      "connection": {
+        "secure": false,
+        "hostname": "localhost",
+        "port": 5672
+      }
+    },
+    "exchangeSettings": {
+      "name": "domain_events"
+    },
+    "maxRetries": 3,
+    "retryTtl": 1000
+  }
+}

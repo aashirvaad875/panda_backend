@@ -1,0 +1,19 @@
+services:
+  Panda.TypeOrmConfig:
+    factory:
+      class: '../../../../../Contexts/Panda/Shared/infrastructure/persistence/postgres/TypeOrmConfigFactory'
+      method: 'createConfig'
+
+  Panda.ConnectionManager:
+    factory:
+      class: '../../../../../Contexts/Shared/infrastructure/persistence/TypeOrmClientFactory'
+      method: 'createClient'
+    arguments: ['@Panda.TypeOrmConfig', '@Shared.Logger']
+
+  Panda.Courses.domain.EventCategoryRepository:
+    class: ../../../../../Contexts/Panda/EventsCategory/infrastructure/persistence/TypeOrmEventCategoryRepository
+    arguments: ['@Panda.ConnectionManager']
+
+  Panda.Courses.application.CourseCreator:
+    class: ../../../../../Contexts/Panda/EventsCategory/application/EventCategoryCreator
+    arguments: ['@ Panda.Courses.domain.EventCategoryRepository']

@@ -1,0 +1,9 @@
+services:
+  Panda.Shared.WinstonLoggerConfig:
+    factory:
+      class: '../../../../../Contexts/Shared/infrastructure/WinstonLogger/winstonLoggerFactory'
+      method: 'createConfig'
+
+  Shared.Logger:
+    class: '../../../../../Contexts/Shared/infrastructure/WinstonLogger'
+    arguments: ['@Panda.Shared.WinstonLoggerConfig']

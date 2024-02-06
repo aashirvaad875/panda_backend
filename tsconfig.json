@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "rootDir": ".",
+    "strict": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
+    "baseUrl": "."
+  },
+
+  "include": ["src/**/**.ts", "tests/**/**.ts", "jest.config.js", "cucumber.js", "lint-staged.config.js"],
+  "exclude": ["node_modules"]
+}
