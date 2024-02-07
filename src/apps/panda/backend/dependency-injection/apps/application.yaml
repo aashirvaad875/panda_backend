@@ -1,8 +1,8 @@
 services:
   Apps.Panda.Backend.Controllers.HealthCheckController:
-    class: '../../controllers/HealthCheck/HealthCheckController'
+    class: ../../controllers/HealthCheck/HealthCheckController
     arguments: []
 
-  Apps.Panda.controllers.EventCategoryPostController:
+  Apps.Panda.Backend.Controllers.EventCategoryPostController:
     class: ../../controllers/EventCategory/EventCategoryPostController
-    arguments: ['@Mooc.Courses.application.CourseCreator']
+    arguments: ['@Panda.EventCategory.application.EventCategoryCreator']

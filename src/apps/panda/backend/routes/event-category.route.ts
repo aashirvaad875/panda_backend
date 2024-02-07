@@ -9,7 +9,7 @@ export const register = (router: Router) => {
     body('name').exists().isString(),
     body('description').exists().isString()
   ];
-  const EventCategoryController = container.get('Apps.panda.controllers.EventCategoryPostController');
+  const EventCategoryController = container.get('Apps.Panda.Backend.Controllers.EventCategoryPostController');
   router.post('/event/category', reqSchema, validateReqSchema, (req: Request, res: Response) =>
     EventCategoryController.run(req, res)
   );

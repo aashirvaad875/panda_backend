@@ -10,10 +10,10 @@ services:
       method: 'createClient'
     arguments: ['@Panda.TypeOrmConfig', '@Shared.Logger']
 
-  Panda.Courses.domain.EventCategoryRepository:
-    class: ../../../../../Contexts/Panda/EventsCategory/infrastructure/persistence/TypeOrmEventCategoryRepository
+  Panda.EventCategory.domain.EventCategoryRepository:
+    class: ../../../../../Contexts/Panda/EventsCategory/infrastructure/repositories/TypeOrmEventCategoryRepository
     arguments: ['@Panda.ConnectionManager']
 
-  Panda.Courses.application.CourseCreator:
+  Panda.EventCategory.application.EventCategoryCreator:
     class: ../../../../../Contexts/Panda/EventsCategory/application/EventCategoryCreator
-    arguments: ['@ Panda.Courses.domain.EventCategoryRepository']
+    arguments: ['@Panda.EventCategory.domain.EventCategoryRepository']

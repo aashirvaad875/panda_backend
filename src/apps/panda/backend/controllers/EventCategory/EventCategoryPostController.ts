@@ -10,13 +10,15 @@ type EventCategoryPostRequest = Request & {
     description: string;
   };
 };
-export class CoursePutController implements Controller {
-  constructor(private courseCreator: EventCategoryCreator) {}
+export class EventCategoryPostController implements Controller {
+  constructor(private EventCategoryCreator: EventCategoryCreator) {}
 
   async run(req: EventCategoryPostRequest, res: Response) {
     try {
       const { id, name, description } = req.body;
-      await this.courseCreator.run({ id, name, description });
+      const data = await this.EventCategoryCreator.run({ id, name, description });
+      console.log(data);
+
       res.status(httpStatus.CREATED).send();
     } catch (error) {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send();

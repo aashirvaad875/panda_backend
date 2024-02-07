@@ -4,7 +4,7 @@ import HealthCheckController from '../controllers/HealthCheck/HealthCheckControl
 
 export const register = (app: Express): void => {
   // Controller
-  const controller: HealthCheckController = container.get('App.Panda.Backend.Controllers.HealthCheckController');
+  const controller: HealthCheckController = container.get('Apps.Panda.Backend.Controllers.HealthCheckController');
 
   // Routes
   app.get('/health_check', controller.run.bind(controller));

@@ -6,11 +6,11 @@ import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
-import { registerRoutes } from './routes';
 import cors from 'cors';
 import config from '../../../../config';
 import { ILogger } from '../../../Contexts/Shared/domain/Logger';
 import container from './dependency-injection';
+import { registerRoutes } from './routes';
 
 export class Server {
   private express: express.Express;
@@ -32,6 +32,7 @@ export class Server {
     const router = Router();
     router.use(cors());
     router.use(errorHandler());
+
     this.express.use('/api', router);
     registerRoutes(router);
 

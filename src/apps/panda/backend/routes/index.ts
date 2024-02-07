@@ -3,11 +3,11 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Router, Request, Response } from 'express';
 import { glob } from 'glob';
-import { ValidationError, validationResult } from 'express-validator';
+import { validationResult } from 'express-validator';
 import httpStatus from 'http-status';
 
 export function registerRoutes(router: Router) {
-  const routes = glob.sync(__dirname + '/**/*.routes.*');
+  const routes = glob.sync(__dirname + '/**/*.route.*');
   routes.map((route: string) => register(route, router));
 }
 
@@ -21,7 +21,8 @@ export function validateReqSchema(req: Request, res: Response, next: Function) {
   if (validationErrors.isEmpty()) {
     return next();
   }
-  const errors = validationErrors.array().map((err: ValidationError) => ({ [err.type]: err.msg }));
+
+  const errors = validationErrors.array().map((err: any) => ({ [err.path]: err.msg }));
 
   return res.status(httpStatus.UNPROCESSABLE_ENTITY).json({
     errors
