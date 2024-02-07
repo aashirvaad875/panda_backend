@@ -1,16 +1,18 @@
+/* eslint-disable n/no-path-concat */
 import convict from 'convict';
 
 const pandaConfig = convict({
   appname: {
     doc: 'panda application',
     format: String,
-    default: 'default',
+    default: 'panda application',
     env: 'APP_NAME'
   },
+
   env: {
     doc: 'The application env.',
     format: ['production', 'development', 'staging', 'test'],
-    default: 'default',
+    default: 'development',
     env: 'NODE_ENV'
   },
   apploglevel: {
@@ -26,6 +28,12 @@ const pandaConfig = convict({
     default: 8000
   },
   typeorm: {
+    type: {
+      doc: 'The database type',
+      format: ['postgres'],
+      default: 'postgres',
+      env: 'TYPEORM_TYPE'
+    },
     host: {
       doc: 'The database host',
       format: String,

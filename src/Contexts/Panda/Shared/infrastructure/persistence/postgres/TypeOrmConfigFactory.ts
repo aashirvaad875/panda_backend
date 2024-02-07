@@ -9,7 +9,8 @@ export class TypeOrmConfigFactory {
       port: config.get('typeorm.port'),
       username: config.get('typeorm.username'),
       password: config.get('typeorm.password'),
-      database: config.get('typeorm.database')
+      database: config.get('typeorm.database'),
+      type: config.get('typeorm.type')
     };
   }
 }

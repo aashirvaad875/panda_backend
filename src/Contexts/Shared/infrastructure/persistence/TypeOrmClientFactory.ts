@@ -5,12 +5,10 @@ import { TypeOrmConfig } from './TypeOrmConfig';
 
 export class TypeOrmClientFactory {
   static async createClient(config: TypeOrmConfig, logger: ILogger): Promise<DataSource> {
-    console.log(config);
-
     try {
       const dataSource = new DataSource({
         type: 'postgres',
-        host: '127.0.0.1',
+        host: config.host,
         port: config.port,
         username: config.username,
         password: config.password,
@@ -21,8 +19,8 @@ export class TypeOrmClientFactory {
         migrations: ['/migration/*.ts']
       });
       logger.info('connection to database');
-
       const connection = await dataSource.initialize();
+
       return connection;
     } catch (error) {
       console.log(error);

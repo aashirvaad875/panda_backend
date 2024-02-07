@@ -5,4 +5,5 @@ export interface TypeOrmConfig {
   username: string;
   password: string;
   database: string;
+  type: string;
 }

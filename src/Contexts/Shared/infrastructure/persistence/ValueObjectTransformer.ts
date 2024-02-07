@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { NewableClass } from '../../domain/NewableClass';
 import { ValueObject } from '../../domain/value-object/ValueObject';
 

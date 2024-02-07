@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-base-to-string */
 import { InvalidArgumentError } from './InvalidArgumentError';
 
 type Primitives = String | string | number | Boolean | boolean | Date;

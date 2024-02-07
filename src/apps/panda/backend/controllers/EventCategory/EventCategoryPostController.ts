@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { Controller } from '../Controller';
@@ -16,11 +17,13 @@ export class EventCategoryPostController implements Controller {
   async run(req: EventCategoryPostRequest, res: Response) {
     try {
       const { id, name, description } = req.body;
-      const data = await this.EventCategoryCreator.run({ id, name, description });
-      console.log(data);
+
+      await this.EventCategoryCreator.execute(id, name, description);
 
       res.status(httpStatus.CREATED).send();
     } catch (error) {
+      console.log(error);
+
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
     }
   }

@@ -1,26 +1,24 @@
-import { EntitySchema } from 'typeorm';
-import { Nullable } from '../../../../Shared/domain/Nullable';
+import { ObjectType } from 'typeorm';
 import { TypeOrmRepository } from '../../../../Shared/infrastructure/persistence/TypeOrmRepository';
 import { EventCategoryEntity } from '../persistence/entity/event-category';
-import { EventCategory } from '../../domain/EventCategory';
+import { EventCategory, IEventCategoryPrimitives } from '../../domain/EventCategory';
 import { EventCategoryRepository } from '../../domain/repositories/EventCategoryRepository';
-import { EventCategoryId } from '../../domain/EventCategoryId';
 
 export class TypeOrmEventCategoryRepository
-  extends TypeOrmRepository<EventCategory>
+  extends TypeOrmRepository<EventCategory, IEventCategoryPrimitives>
   implements EventCategoryRepository
 {
-  public async save(eventCategory: EventCategory): Promise<void> {
-    return this.persist(eventCategory);
-  }
-
-  public async search(id: EventCategoryId): Promise<Nullable<EventCategory>> {
+  async create(category: EventCategory): Promise<EventCategory | null> {
+    const categoryCreated = new EventCategoryEntity();
+    categoryCreated.id = String(category.id);
+    categoryCreated.name = String(category.name);
+    categoryCreated.description = String(category.description);
     const repository = await this.repository();
-    const eventCategory = await repository.findOne({ where: { id } });
-    return eventCategory;
+    await repository.save(categoryCreated);
+    return EventCategory.toDomain(categoryCreated);
   }
 
-  protected entitySchema(): EntitySchema<EventCategory> {
+  protected entitySchema(): ObjectType<EventCategory> {
     return EventCategoryEntity;
   }
 }
