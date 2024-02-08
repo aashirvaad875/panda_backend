@@ -1,5 +1,5 @@
-import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject';
-import { EventCategoryNameLengthExceeded } from './EventCategoryNameLengthExceeded';
+import { EventCategoryNameLengthExceeded } from './event-category-name-length-exceeded.vo';
+import { StringValueObject } from '../../../../Shared/domain/value-object/string-value-object.vo';
 
 export class EventCategoryName extends StringValueObject {
   constructor(value: string) {

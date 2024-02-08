@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import validate from 'uuid-validate';
-import { InvalidArgumentError } from './InvalidArgumentError';
-import { ValueObject } from './ValueObject';
+import { ValueObject } from './value-object';
+import { VOFormatException } from '../errors/vo-format.exception';
 
 export class Uuid extends ValueObject<string> {
   constructor(value: string) {
@@ -13,9 +13,9 @@ export class Uuid extends ValueObject<string> {
     return new Uuid(uuid());
   }
 
-  private ensureIsValidUuid(id: string): void {
-    if (!validate(id)) {
-      throw new InvalidArgumentError(`${Uuid.name} does not allow the value ${this.value}`);
+  private ensureIsValidUuid(value: string): void {
+    if (!validate(value)) {
+      throw new VOFormatException(`${Uuid.name} does not allow the value ${this.value}`);
     }
   }
 }

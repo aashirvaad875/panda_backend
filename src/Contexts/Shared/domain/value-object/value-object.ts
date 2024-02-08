@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-base-to-string */
-import { InvalidArgumentError } from './InvalidArgumentError';
+import { VOFormatException } from '../errors/vo-format.exception';
 
-type Primitives = String | string | number | Boolean | boolean | Date;
+export type Primitives = String | string | number | Boolean | boolean | Date;
 
 export abstract class ValueObject<T extends Primitives> {
   readonly value: T;
@@ -13,7 +12,7 @@ export abstract class ValueObject<T extends Primitives> {
 
   private ensureValueIsDefined(value: T): void {
     if (value === null || value === undefined) {
-      throw new InvalidArgumentError('Value must be defined');
+      throw new VOFormatException('Value must be defined');
     }
   }
 

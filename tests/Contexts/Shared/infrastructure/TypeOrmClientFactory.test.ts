@@ -10,11 +10,11 @@ describe('TypeOrmClientFactory', () => {
   beforeEach(async () => {
     client = await factory.createClient(
       {
-        type: 'postgres',
+        type: 'postgresd',
         host: 'localhost',
         port: 5432,
-        username: 'webandapp',
-        password: 'webandapp',
+        username: 'ashikchalise',
+        password: 'ashikchalise',
         database: 'panda',
         env: 'testing'
       },
@@ -37,8 +37,8 @@ describe('TypeOrmClientFactory', () => {
         type: 'postgres',
         host: 'localhost',
         port: 5432,
-        username: 'webandapp',
-        password: 'webandapp',
+        username: 'ashikchalise',
+        password: 'ashikchalise',
         database: 'panda',
         env: 'testing'
       },

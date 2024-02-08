@@ -1,6 +1,6 @@
 import { ILogger } from '../../domain/Logger';
 import { DataSource } from 'typeorm';
-import { EventCategoryEntity } from '../../../Panda/EventsCategory/infrastructure/persistence/entity/event-category';
+import { EventCategoryEntity } from '../../../Panda/EventsCategory/infrastructure/persistence/entity/event-category.entity';
 import { TypeOrmConfig } from './TypeOrmConfig';
 
 export class TypeOrmClientFactory {

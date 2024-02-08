@@ -6,8 +6,8 @@
   "typeorm": {
     "host": "localhost",
     "port": 5432,
-    "username": "webandapp",
-    "password": "webandapp",
+    "username": "ashikchalise",
+    "password": "ashikchalise",
     "database": "panda"
   },
   "rabbitmq": {
@@ -29,4 +29,3 @@
     "retryTtl": 1000
   }
 }
-

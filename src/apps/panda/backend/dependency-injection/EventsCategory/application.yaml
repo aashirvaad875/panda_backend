@@ -6,7 +6,7 @@ services:
 
   Panda.ConnectionManager:
     factory:
-      class: '../../../../../Contexts/Shared/infrastructure/persistence/TypeOrmClientFactory'
+      class: ../../../../../Contexts/Shared/infrastructure/persistence/TypeOrmClientFactory
       method: 'createClient'
     arguments: ['@Panda.TypeOrmConfig', '@Shared.Logger']
 

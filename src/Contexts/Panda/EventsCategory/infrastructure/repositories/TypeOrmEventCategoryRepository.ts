@@ -1,24 +1,24 @@
 import { ObjectType } from 'typeorm';
 import { TypeOrmRepository } from '../../../../Shared/infrastructure/persistence/TypeOrmRepository';
-import { EventCategoryEntity } from '../persistence/entity/event-category';
-import { EventCategory, IEventCategoryPrimitives } from '../../domain/EventCategory';
-import { EventCategoryRepository } from '../../domain/repositories/EventCategoryRepository';
+import { EventCategoryModel, IEventCategoryPrimitives } from '../../domain/models/event-category.model';
+import { EventCategoryRepository } from '../../domain/repositories/event-category.repository';
+import { EventCategoryEntity } from '../persistence/entity/event-category.entity';
 
 export class TypeOrmEventCategoryRepository
-  extends TypeOrmRepository<EventCategory, IEventCategoryPrimitives>
+  extends TypeOrmRepository<EventCategoryModel, IEventCategoryPrimitives>
   implements EventCategoryRepository
 {
-  async create(category: EventCategory): Promise<EventCategory | null> {
+  async create(category: EventCategoryModel): Promise<EventCategoryModel | null> {
     const categoryCreated = new EventCategoryEntity();
-    categoryCreated.id = String(category.id);
-    categoryCreated.name = String(category.name);
-    categoryCreated.description = String(category.description);
+    categoryCreated.id = category.id.value;
+    categoryCreated.name = category.name.value;
+    categoryCreated.description = category.description.value;
     const repository = await this.repository();
     await repository.save(categoryCreated);
-    return EventCategory.toDomain(categoryCreated);
+    return EventCategoryModel.toDomain(categoryCreated);
   }
 
-  protected entitySchema(): ObjectType<EventCategory> {
+  protected entitySchema(): ObjectType<EventCategoryModel> {
     return EventCategoryEntity;
   }
 }

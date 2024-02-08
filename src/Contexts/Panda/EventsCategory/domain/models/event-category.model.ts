@@ -1,14 +1,14 @@
-import { AggregateRoot, AggregateRootPrimitives } from '../../../Shared/domain/AggregateRoot';
-import { EventCategoryDescription } from './EventCategoryDescription';
-import { EventCategoryId } from './EventCategoryId';
-import { EventCategoryName } from './EventCategoryName';
+import { AggregateRoot, AggregateRootPrimitives } from '../../../../Shared/domain/AggregateRoot';
+import { EventCategoryId } from '../value-object/event-category-id.vo';
+import { EventCategoryName } from '../value-object/event-category-name.vo';
+import { EventCategoryDescription } from '../value-object/event-category-description.vo';
 
 export interface IEventCategoryPrimitives extends AggregateRootPrimitives {
   id: string;
   name: string;
   description: string;
 }
-export class EventCategory extends AggregateRoot {
+export class EventCategoryModel extends AggregateRoot {
   // readonly id: EventCategoryId;
   // readonly name: EventCategoryName;
   // readonly description: EventCategoryDescription;
@@ -29,14 +29,18 @@ export class EventCategory extends AggregateRoot {
     super();
   }
 
-  static create(id: EventCategoryId, name: EventCategoryName, description: EventCategoryDescription): EventCategory {
-    const category = new EventCategory(id, name, description);
+  static create(
+    id: EventCategoryId,
+    name: EventCategoryName,
+    description: EventCategoryDescription
+  ): EventCategoryModel {
+    const category = new EventCategoryModel(id, name, description);
 
     return category;
   }
 
-  static toDomain(category: IEventCategoryPrimitives): EventCategory {
-    return new EventCategory(
+  static toDomain(category: IEventCategoryPrimitives): EventCategoryModel {
+    return new EventCategoryModel(
       new EventCategoryId(category.id),
       new EventCategoryName(category.name),
       new EventCategoryDescription(category.description)

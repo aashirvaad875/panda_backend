@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { Controller } from '../Controller';
 import { EventCategoryCreator } from '../../../../../Contexts/Panda/EventsCategory/application/EventCategoryCreator';
+import { EventCreateDTO } from '../../../../../Contexts/Panda/EventsCategory/infrastructure/dtos/event-create-dto';
 
 type EventCategoryPostRequest = Request & {
   body: {
@@ -16,9 +17,13 @@ export class EventCategoryPostController implements Controller {
 
   async run(req: EventCategoryPostRequest, res: Response) {
     try {
-      const { id, name, description } = req.body;
+      const requestData: EventCreateDTO = req.body;
 
-      await this.EventCategoryCreator.execute(id, name, description);
+      await this.EventCategoryCreator.execute({
+        id: requestData.id,
+        name: requestData.name,
+        description: requestData.description
+      });
 
       res.status(httpStatus.CREATED).send();
     } catch (error) {

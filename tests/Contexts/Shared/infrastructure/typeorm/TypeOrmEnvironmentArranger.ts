@@ -7,8 +7,6 @@ export class TypeOrmEnvironmentArranger extends EnvironmentArranger {
   }
 
   public async arrange(): Promise<void> {
-    console.log(123);
-
     await this.cleanDatabase();
   }
 

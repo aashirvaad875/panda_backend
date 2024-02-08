@@ -1,5 +1,5 @@
-import { InvalidArgumentError } from './InvalidArgumentError';
-import { ValueObject } from './ValueObject';
+import { VOFormatException } from '../errors/vo-format.exception';
+import { ValueObject } from './value-object';
 
 export class DateValueObject extends ValueObject<Date> {
   public equals(valueObject: DateValueObject): boolean {
@@ -8,6 +8,6 @@ export class DateValueObject extends ValueObject<Date> {
 
   protected assertIsValid(value: Date): void {
     if (value.getTime() > new Date().getTime())
-      throw new InvalidArgumentError(`${DateValueObject.name} ${JSON.stringify(value)}`);
+      throw new VOFormatException(`${DateValueObject.name} does not allow the value ${this.value}`);
   }
 }
