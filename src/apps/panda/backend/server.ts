@@ -1,11 +1,11 @@
 import bodyParser from 'body-parser';
 import compress from 'compression';
 import errorHandler from 'errorhandler';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
-import httpStatus from 'http-status';
+// import httpStatus from 'http-status';
 import cors from 'cors';
 import config from '../../../../config';
 import { ILogger } from '../../../Contexts/Shared/domain/Logger';
@@ -36,10 +36,10 @@ export class Server {
     this.express.use('/api', router);
     registerRoutes(router);
 
-    router.use((err: Error, _req: Request, res: Response, next: Function) => {
-      this.logger.error(err.message);
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
-    });
+    // router.use((err: Error, _req: Request, res: Response, next: Function) => {
+    //   this.logger.error(err.message);
+    //   res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
+    // });
   }
 
   async listen(): Promise<void> {

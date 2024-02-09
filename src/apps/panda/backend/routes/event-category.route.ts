@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import container from '../dependency-injection';
-import { body } from 'express-validator';
 import { validateReqSchema } from '.';
+import { EventCreateDTO } from '../../../../Contexts/Panda/EventsCategory/infrastructure/dtos/event-create-dto';
 
 export const register = (router: Router) => {
-  const reqSchema = [body('name').exists().isString(), body('description').exists().isString()];
   const EventCategoryController = container.get('Apps.Panda.Backend.Controllers.EventCategoryPostController');
-  router.post('/event/category', reqSchema, validateReqSchema, (req: Request, res: Response) =>
-    EventCategoryController.run(req, res)
+
+  router.post('/event/category', EventCreateDTO, validateReqSchema, (req: Request, res: Response, next: NextFunction) =>
+    EventCategoryController.run(req, res, next)
   );
 };

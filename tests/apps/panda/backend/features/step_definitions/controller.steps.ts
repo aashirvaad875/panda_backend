@@ -21,6 +21,12 @@ Given('I send a PUT request to {string} with body:', (route: string, body: strin
     .send(JSON.parse(body));
 });
 
+Given('I send a POST request to {string} with body:', (route: string, body: string) => {
+  _request = request(application.httpServer as http.Server)
+    .post(route)
+    .send(JSON.parse(body));
+});
+
 Then('the response should be empty', () => {
   assert.deepStrictEqual(_response.body, {});
 });

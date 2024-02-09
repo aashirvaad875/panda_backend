@@ -1,15 +1,7 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { body } from 'express-validator';
 
-export class EventCreateDTO {
-  @IsEmail()
-  @IsNotEmpty()
-  public id!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  public name!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  public description!: string;
-}
+export const EventCreateDTO = [
+  body('id').exists().isString(),
+  body('name').exists().isString(),
+  body('description').exists().isString()
+];
