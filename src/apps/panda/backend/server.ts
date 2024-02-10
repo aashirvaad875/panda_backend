@@ -1,16 +1,19 @@
 import bodyParser from 'body-parser';
 import compress from 'compression';
 import errorHandler from 'errorhandler';
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
 // import httpStatus from 'http-status';
+import { MESSAGE_CODES } from '../../../Contexts/Shared/infrastructure/utils/messagecode';
 import cors from 'cors';
 import config from '../../../../config';
 import { ILogger } from '../../../Contexts/Shared/domain/Logger';
 import container from './dependency-injection';
 import { registerRoutes } from './routes';
+import { HTTP404Error, HTTPClientError } from '../../../Contexts/Shared/domain/errors/http.exception';
+import httpStatus from 'http-status';
 
 export class Server {
   private express: express.Express;
@@ -36,10 +39,23 @@ export class Server {
     this.express.use('/api', router);
     registerRoutes(router);
 
-    // router.use((err: Error, _req: Request, res: Response, next: Function) => {
-    //   this.logger.error(err.message);
-    //   res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
-    // });
+    router.use(() => {
+      throw new HTTP404Error(MESSAGE_CODES.NOT_FOUND);
+    });
+
+    router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+      if (err instanceof HTTPClientError) {
+        this.logger.error(`${req.method.toUpperCase()}: ${req.path}  client errror ${err.message}`);
+        res.status(err.statusCode).send({ message: err.message });
+      } else {
+        next(err);
+      }
+    });
+
+    router.use((err: Error, _req: Request, res: Response, next: Function) => {
+      this.logger.error(err.message);
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
+    });
   }
 
   async listen(): Promise<void> {

@@ -11,11 +11,11 @@ export class TypeOrmEnvironmentArranger extends EnvironmentArranger {
   }
 
   protected async cleanDatabase(): Promise<void> {
-    const entities = await this.entities();
-
     try {
+      const client = await this._client;
+      const entities = await this.entities();
       for (const entity of entities) {
-        const repository = (await this._client).getRepository(entity.name);
+        const repository = client.getRepository(entity.name);
         await repository.query(`TRUNCATE TABLE ${entity.tableName};`);
       }
     } catch (error) {
@@ -32,6 +32,6 @@ export class TypeOrmEnvironmentArranger extends EnvironmentArranger {
   }
 
   public async close(): Promise<void> {
-    return (await this.client()).destroy();
+    return (await this.client()).close();
   }
 }

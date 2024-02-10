@@ -19,9 +19,9 @@ export class EventCategoryPostController implements Controller {
       const { description, id, name } = req.body;
 
       await this.EventCategoryCreator.execute({
-        id: id,
-        name: name,
-        description: description
+        id,
+        name,
+        description
       });
       res.status(httpStatus.CREATED).send();
     } catch (error) {

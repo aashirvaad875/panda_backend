@@ -1,3 +1,3 @@
-import { StringValueObject } from '../../../../Shared/domain/value-object/string-value-object.vo';
+import { DescriptionVO } from '../../../../Shared/domain/value-object/description.vo';
 
-export class EventCategoryDescription extends StringValueObject {}
+export class EventCategoryDescription extends DescriptionVO {}

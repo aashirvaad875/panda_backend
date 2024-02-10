@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable n/no-path-concat */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -21,12 +22,7 @@ export function validateReqSchema(req: Request, res: Response, next: Function) {
   if (validationErrors.isEmpty()) {
     return next();
   }
-
-  const errors = validationErrors.array().map((err: any) => ({ [err.path]: err.msg }));
-
-  console.log(errors);
-
   return res.status(httpStatus.UNPROCESSABLE_ENTITY).json({
-    errors
+    message: validationErrors.array()[0].msg
   });
 }

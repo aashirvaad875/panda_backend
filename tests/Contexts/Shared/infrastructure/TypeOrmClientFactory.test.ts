@@ -13,8 +13,8 @@ describe('TypeOrmClientFactory', () => {
         type: 'postgresd',
         host: 'localhost',
         port: 5432,
-        username: 'ashikchalise',
-        password: 'ashikchalise',
+        username: 'webandapp',
+        password: 'webandapp',
         database: 'panda',
         env: 'testing'
       },
@@ -37,8 +37,8 @@ describe('TypeOrmClientFactory', () => {
         type: 'postgres',
         host: 'localhost',
         port: 5432,
-        username: 'ashikchalise',
-        password: 'ashikchalise',
+        username: 'webandapp',
+        password: 'webandapp',
         database: 'panda',
         env: 'testing'
       },

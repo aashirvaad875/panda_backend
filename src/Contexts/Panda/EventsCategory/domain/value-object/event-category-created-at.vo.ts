@@ -1,3 +1,2 @@
-import { DateValueObject } from '../../../../Shared/domain/value-object/date-value-object.vo';
-
-export class EventCategoryCreatedAt extends DateValueObject {}
+import { DateVO } from '../../../../Shared/domain/value-object/date.vo';
+export class EventCategoryCreatedAt extends DateVO {}

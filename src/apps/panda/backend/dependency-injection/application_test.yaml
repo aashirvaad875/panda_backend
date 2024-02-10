@@ -1,6 +1,7 @@
 imports:
   - { resource: ./application.yaml }
+
 services:
   Panda.EnvironmentArranger:
     class: ../../../../../tests/Contexts/Shared/infrastructure/typeorm/TypeOrmEnvironmentArranger
-    arguments: ['@Mooc.ConnectionManager']
+    arguments: ['@Panda.ConnectionManager']

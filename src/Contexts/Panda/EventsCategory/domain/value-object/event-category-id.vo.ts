@@ -1,3 +1,3 @@
-import { Uuid } from '../../../../Shared/domain/value-object/uuid.vo';
+import { UuidVO } from '../../../../Shared/domain/value-object/uuid.vo';
 
-export class EventCategoryId extends Uuid {}
+export class EventCategoryId extends UuidVO {}
